@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        padding: 20px;
+    }
+
+    #jsonInput, #resultBlock {
+        width: 90%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-family: monospace;
+        background-color: #fff;
+    }
+
+    #resultBlock {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+
+    #formatBtn {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #formatBtn:hover {
+        background-color: #0056b3;
+    }
+
+    div {
+        margin-bottom: 20px;
+    }
+</style>
+
+<body>
+    <div>
+        <textarea id="jsonInput" rows="10" cols="50"></textarea>
+        <button id="formatBtn">Форматировать JSON</button>
+    </div>
+    <div>
+        <pre id="resultBlock"></pre>
+    </div>
+    <script>
+        document.getElementById('formatBtn').addEventListener('click', function() {
+    var input = document.getElementById('jsonInput').value;
+    try {
+        var formattedJson = JSON.stringify(JSON.parse(input), null, 4);
+        document.getElementById('resultBlock').textContent = formattedJson;
+        document.getElementById('resultBlock').style.color = 'black';
+    } catch (e) {
+        document.getElementById('resultBlock').textContent = 'Ошибка: введенные данные не являются корректным JSON.';
+        document.getElementById('resultBlock').style.color = 'red';
+    }
+});
+
+    </script>
+</body>
+</html>
